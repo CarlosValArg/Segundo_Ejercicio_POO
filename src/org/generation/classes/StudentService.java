@@ -3,6 +3,10 @@ package org.generation.classes;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import org.generation.exceptions.CourseNotFoundException;
+import org.generation.exceptions.StudentNotFoundException;
+
+
 
 public class StudentService
 {
@@ -23,7 +27,13 @@ public class StudentService
     }//constructor
 
     public void enrollStudents( String courseName, String studentID )
-    {
+    	throws CourseNotFoundException, StudentNotFoundException{ 
+    	if(!courseList.containsKey(courseName)) {
+    		throw new CourseNotFoundException(courseName);
+    	}
+    	if(!students.containsKey(studentID)) {
+    		throw new StudentNotFoundException(studentID);
+    	}
         Course course = courseList.get( courseName );
 
         if ( !coursesEnrolledByStudents.containsKey( studentID ) )
