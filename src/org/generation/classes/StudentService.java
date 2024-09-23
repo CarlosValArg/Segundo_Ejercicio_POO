@@ -6,11 +6,11 @@ import java.util.List;
 
 public class StudentService
 {
-    HashMap<String, Course> courseList = new HashMap<>();
+	private  HashMap<String, Course> courseList = new HashMap<>();
 
-    HashMap<String, Student> students = new HashMap<>();
+   private HashMap<String, Student> students = new HashMap<>();
 
-    HashMap<String, List<Course>> coursesEnrolledByStudents = new HashMap<>();
+   private HashMap<String, List<Course>> coursesEnrolledByStudents = new HashMap<>();
 
 
     public StudentService()
@@ -20,7 +20,7 @@ public class StudentService
         courseList.put( "Art", new Course( "Art", 10, "Pablo Picasso" ) );
         courseList.put( "History", new Course( "History", 10, "Sima Qian" ) );
         courseList.put( "Biology", new Course( "Biology", 10, "Charles Darwin" ) );
-    }
+    }//constructor
 
     public void enrollStudents( String courseName, String studentID )
     {
@@ -30,7 +30,9 @@ public class StudentService
         {
             coursesEnrolledByStudents.put( studentID, new ArrayList<>() );
         }
+        if ( !coursesEnrolledByStudents.get(studentID).contains(course)){
         coursesEnrolledByStudents.get( studentID ).add( course );
+        }
     }
 
     public void unEnrollStudents( String courseName, String studentID )
@@ -45,9 +47,23 @@ public class StudentService
 
     public void showEnrolledStudents(String courseId){
         //TODO implement using collections loops
+    	Course course = courseList.get(courseId);
+    	for(String studentId:coursesEnrolledByStudents.keySet()) {
+    		List<Course>allCourse = coursesEnrolledByStudents.get(studentId);
+    		if(allCourse.contains(course)) {
+    			Student student=students.get(studentId);
+    			System.out.println(student);
+    		}
+    	}
     }
 
     public void showAllCourses(){
         //TODO implement using collections loops
+    	for (Course course: courseList.values()) {
+    		System.out.println(course);
+    	}
     }
-}
+    public void addStudent(Student student) {
+    	students.put(student.getId(), student);
+    }//addStudent
+}//class studentService

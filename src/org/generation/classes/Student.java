@@ -20,4 +20,39 @@ public class Student
         this.id = id;
         this.age = age;
     }
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public List<Course> getCourseList() {
+		return courseList;
+	}
+
+	@Override
+	public String toString() {
+		return "Student [name=" + name + ", id=" + id + ", age=" + age + ", courseList=" + courseList + "]";
+	}
+
+	
 }
